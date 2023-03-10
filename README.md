@@ -4,7 +4,17 @@
 ```
 npm install
 ```
-
+Create Database with quiz as it name
+```
+php artisan migrate //create table users and quiz
+```
+php artisan migrate --seed //insert admin to users
+```
+composer require laravel/passport
+```
+php artisan migrate
+```
+php artisan passport:install
 ### Compiles and hot-reloads for development
 ```
 npm run serve

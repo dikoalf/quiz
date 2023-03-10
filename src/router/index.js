@@ -57,9 +57,10 @@ const routes = [
     component: ListUserView
   },
   {
-    path: '/admin/user/update',
+    path: '/admin/user/update/:id',
     name: 'user update',
-    component: UpdateUserView
+    component: UpdateUserView,
+    props: true
   },
 ]
 

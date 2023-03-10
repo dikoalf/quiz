@@ -21,7 +21,6 @@
           <div>{{ answers }}</div>
           <div v-for="(quiz, index) in quizzes" :key="index">
             <div class="row">
-              <!-- <div>{{ quiz.answer }}</div> -->
               <p class="question">{{ index + 1 }}. {{ quiz.desc }}</p>
               <div class="row">
                 <div class="form-check">
@@ -63,7 +62,7 @@
 <script>
 import Navbar from '@/components/HomeNavbar.vue'
 import Footbar from '@/components/FootbarQuiz.vue'
-import { mapActions, mapState } from 'vuex';
+// import { mapActions, mapState } from 'vuex';
 import axios from 'axios';
 // import Swal from 'sweetalert2'
 // import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -95,10 +94,10 @@ export default {
 },
 
   computed: {
-    ...mapState(['quizzes'])
+    // ...mapState(['quizzes'])
   },
   methods: {
-    ...mapActions(["selectQuiz"]),
+    // ...mapActions(["selectQuiz"]),
     async getQuiz() {
       try {
         const response = await axios.get('http://localhost/quizApp-api/api/quiz', {

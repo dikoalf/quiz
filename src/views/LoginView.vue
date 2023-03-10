@@ -4,7 +4,7 @@
   <body class="body-login">
     <div class="login-container">
       <div class="card col-10 col-md-6 col-lg-3">
-        <div class="d-flex">
+        <div class="d-flex" style="background-color: #7bb4e3">
           <div class="mx-auto">
             <h2 class="">Sign In</h2>
           </div>
@@ -38,16 +38,20 @@
       </div>
     </div>
   </body>
+
+  <Footbar />
 </template>
 
 <script>
 import LoginNavbar from "@/components/LoginNavbar.vue";
+import Footbar from '@/components/FootbarQuiz.vue'
 import { mapActions } from 'vuex';
 
 export default {
   name: "LoginView",
   components: {
     LoginNavbar,
+    Footbar
   },
   data() {
     return {

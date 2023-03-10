@@ -1,11 +1,11 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #7BB4E3;">
-        <div class="navbar-nav mx-auto">
+        <div class="position-relative d-block top-0 start-50 translate-middle-x">
             <router-link to="/admin">
                 <img class="mb-1" src="../assets/quiz.png" alt="Quiz Logo" width="50" height="50">
             </router-link>
         </div>
-        <div class="d-flex">
+        <div class="position-absolute end-0">
             <button class="btn btn-outline-danger" @click="logout">Logout</button>
         </div>
     </nav>

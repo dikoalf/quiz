@@ -13,7 +13,7 @@ export const quizService = {
   actions: {
         async selectQuiz(){
             try {
-                const response  = await axios.get('http://localhost/quizApp-api/api/quiz', {
+                const response  = await axios.get('http://localhost/quiz-api/api/quiz', {
                     headers: {
                             'Accept': 'application/json',
                             Authorization: `Bearer ${localStorage.getItem("access_token")}`
@@ -21,14 +21,9 @@ export const quizService = {
                         type: 'quiz',
                     }
                 })
-
-                // console.log(response.data)
-
-                // commit('setQuizzes', JSON.stringify(response.data.data))
           
                 if(response.code == "00")
                 {
-                    // localStorage.setItem('response',JSON.stringify(response.data.data))
                     return response.data
                 }
             } catch (err) {
@@ -37,7 +32,7 @@ export const quizService = {
         },
         async showQuiz(quizData){
             try {
-                const response  = await axios.get('http://localhost/quizApp-api/api/quiz/' + quizData.id , {
+                const response  = await axios.get('http://localhost/quiz-api/api/quiz/' + quizData.id , {
                     headers: {
                             'Accept': 'application/json',
                             Authorization: `Bearer ${localStorage.getItem("access_token")}`
@@ -61,7 +56,7 @@ export const quizService = {
         },
         async createQuiz(){
             try {
-                const response  = await axios.post('http://localhost/quizApp-api/api/quiz', {
+                const response  = await axios.post('http://localhost/quiz-api/api/quiz', {
                     headers: {
                             'Accept': 'application/json',
                             Authorization: `Bearer ${localStorage.getItem("access_token")}`

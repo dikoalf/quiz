@@ -8,7 +8,7 @@ export const userSession = {
   },
   mutations: {
     setLoginStatus: (state, data) => {
-      state.email = data;
+      state.isLogin = data;
     },
     setUser: (state, data) => {
       state.user = data;
@@ -18,12 +18,12 @@ export const userSession = {
         async register({commit},userData){
         
             try {
-                const {data} = await axios.post('http://localhost/quizApp-api/api/register', {
+                const {data} = await axios.post('http://localhost/quiz-api/api/register', {
                     name: userData.name,
                     email: userData.email,
                     password: userData.password,
                 })
-
+                
                 commit("setLoginStatus", false)
           
                 alert(data.message);
@@ -39,24 +39,27 @@ export const userSession = {
         },
 
         async login({ commit }, userData){
+
             try {
-                const {data} = await axios.get('http://localhost/quizApp-api/api/login', {
+                const {data} = await axios.get('http://localhost/quiz-api/api/login', {
                     params: {
                         email: userData.email,
                         password: userData.password
                     }
                 })
-          
+
+                const responseData = data.data
+
                 localStorage.setItem('access_token',data.token)
           
                 commit("setLoginStatus", true)
-                commit("setUser", data.data)
+                commit("setUser", responseData)
           
-                alert(data.message);
+                // alert(data.message);
 
                 if(data.code == "00")
                 {
-                    if(data.data.level == '1')
+                    if(responseData.level == '1')
                     {
                         router.push('/admin')
                     }
@@ -70,11 +73,32 @@ export const userSession = {
                 console.log(err)
             }
         },
+        async select(){
+
+            try {
+                const {response} = await axios.get('http://localhost/quiz-api/api/users', {
+                    headers: {
+                        Accept: 'application/json',
+                        Authorization: 'bearer  ' + localStorage.getItem("access_token")
+                    }
+            })
+          
+                alert(response.message);
+
+                if(response.code == "00")
+                {
+                    return response.data
+                }
+            } catch (err) {
+                alert(err);
+                console.log(err)
+            }
+        },
         async show({ commit }, userData){
             try {
-                const {data} = await axios.get('http://localhost/quizApp-api/api/users/' + userData.id, {
+                const {response} = await axios.get('http://localhost/quiz-api/api/users/' + userData.id, {
                     header: {
-                        Accept: userData.email,
+                        Accept: 'application/json',
                         Authorization: 'bearer  ' + localStorage.getItem("access_token")
                     }
                 })
@@ -82,31 +106,9 @@ export const userSession = {
           
                 commit("setLoginStatus", true)
           
-                alert(data.message);
+                alert(response.message);
 
-                if(data.code == "00")
-                {
-                    //
-                }
-            } catch (err) {
-                alert(err);
-                console.log(err)
-            }
-        },
-        async select({ commit }, userData){
-            try {
-                const {data} = await axios.get('http://localhost/quizApp-api/api/login', {
-                    header: {
-                        Accept: userData.email,
-                        Authorization: 'bearer  ' + localStorage.getItem("access_token")
-                    }
-            })
-          
-                commit("setLoginStatus", true)
-          
-                alert(data.message);
-
-                if(data.code == "00")
+                if(response.code == "00")
                 {
                     //
                 }
@@ -117,9 +119,9 @@ export const userSession = {
         },
         async update({ commit }, userData){
             try {
-                const {data} = await axios.put('http://localhost/quizApp-api/api/users/'+ userData.id, {
+                const {response} = await axios.put('http://localhost/quiz-api/api/users/'+ userData.id, {
                     header: {
-                        Accept: userData.email,
+                        Accept: 'application/json',
                         Authorization: 'bearer  ' + localStorage.getItem("access_token")
                     },
                     data : userData
@@ -127,9 +129,9 @@ export const userSession = {
           
                 commit("setLoginStatus", true)
           
-                alert(data.message);
+                alert(response.message);
 
-                if(data.code == "00")
+                if(response.code == "00")
                 {
                     router.push('/user/list')
                 }

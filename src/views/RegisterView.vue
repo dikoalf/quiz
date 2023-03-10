@@ -1,5 +1,6 @@
 <template>
   <LoginNavbar />
+
   <body class="body-login">
     <div class="login-container">
       <div class="card col-10 col-md-6 col-lg-3">
@@ -39,16 +40,20 @@
       </div>
     </div>
   </body>
+  
+  <Footbar />
 </template>
 
 <script>
 import LoginNavbar from "@/components/LoginNavbar.vue";
+import Footbar from '@/components/FootbarQuiz.vue'
 import { mapActions } from 'vuex';
 
 export default {
   name: "RegisterView",
   components: {
     LoginNavbar,
+    Footbar
   },
   setup () {
   },

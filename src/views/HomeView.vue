@@ -8,7 +8,7 @@
             <li class="list-group-item">Quiz rules :</li>
             <li class="list-group-item">1. You will only have 90 second per each question.</li>
             <li class="list-group-item">2. Once you select your answer, you can't reselect.</li>
-            <li class="list-group-item">3. You can't select any option once time goes off.</li>
+            <li class="list-group-item">3. You can't select any option once timer goes off.</li>
             <li class="list-group-item">4. You'll get points for each correct answer, each question has a different point</li>
           </ul>
           <div class="mx-auto mt-3">
